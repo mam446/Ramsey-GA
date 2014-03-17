@@ -22,7 +22,7 @@ def uniRecomb(one,two):
 
     p = k['params']
     for key in p:
-        p[key]['value'] = random.choice(one,two)['params'][key]
+        p[key]['value'] = random.choice([one,two])['params'][key]['value']
 
     k['params'] = p
     k['fitness'] = 0
@@ -57,8 +57,8 @@ setup = {
             'nodes':13,
             'm':3,
             'n':5,
-            'evals':1000,
-            'runs':1
+            'evals':10000,
+            'runs':5
         }
 
 params = {
@@ -101,12 +101,12 @@ ind = { 'params':None,
 
 
 
-mu = 5
-lamb = 1
+mu = 50
+lamb = 10
 evals = 100
 rate = .1
-ck = 2
-sk = 2
+ck = 8
+sk = 20
 cur = 0
 
 pop = []
@@ -127,18 +127,18 @@ while cur< evals:
         ch = mutate(uniRecomb(ktourn(pop,ck),ktourn(pop,ck)),rate)
         evaluate(ch,setup)
         childs.append(ch)
-
+    cur+=lamb
     survive = []
     for i in xrange(mu):
         survive.append(ktourn(pop+childs,sk))
 
-    pop = survive()
+    pop = survive
     sorted(pop,key=lambda k: k['fitness'])
     s = 0.0
     for i in pop:
         s+=i['fitness']
     print "                                                   ",pop[0]['fitness']
-
+    print pop[0]
 print "Final"
 print pop[0]
 

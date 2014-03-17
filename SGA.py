@@ -77,13 +77,12 @@ def SGA(params,setup):
         for i in pop:
             q = [a and b for a,b in zip(q,i.g.adj)]
             s+= i.fitness
-        #print q
         if pop[0].fitness==0.0:
+            pop[0].report()
             break
         print cur, s/len(pop),pop[0].fitness,pop[0].altFitness
 
     pop.sort()
-    pop[0].report()
 
     return pop[0].fitness
 
