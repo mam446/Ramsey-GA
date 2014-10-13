@@ -61,13 +61,13 @@ class solution:
         for key in self.g.sets:
             if int(key)>=self.m:
                 self.fitness+=int(key)**2*len(self.g.sets[key])
-                self.mFit+=int(key)*len(self.g.sets[key])
+                self.mFit+=int(key)**2*len(self.g.sets[key])
                 self.altFitness +=int(key)**2*len(self.g.sets[key])
 
         for key in self.g.invSets:
             if int(key)>=self.n:
                 self.fitness+=int(key)**2*len(self.g.invSets[key])
-                self.nFit+=int(key)*len(self.g.invSets[key])
+                self.nFit+=int(key)**2*len(self.g.invSets[key])
                 self.altFitness +=int(key)**2*len(self.g.invSets[key])
 
         global id

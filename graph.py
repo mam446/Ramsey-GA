@@ -103,8 +103,22 @@ class graph:
                 ret.append(i)
         return ret
 
+    def makeTuran(self,q):
+        for i in xrange(self.nodes):
+            for j in xrange(i):
+                if i%q !=j%q:
+                    self.adj[self.getLoc(i,j)] = 1
+                else:
+                    self.adj[self.getLoc(i,j)] = 0
+        
 
-
+    def makeInvTuran(self,q):
+        for i in xrange(self.nodes):
+            for j in xrange(i):
+                if i%q !=j%q:
+                    self.adj[self.getLoc(i,j)] = 0
+                else:
+                    self.adj[self.getLoc(i,j)] = 1
 
 
 
