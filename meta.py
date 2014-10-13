@@ -1,6 +1,8 @@
 import random
 import copy
 import SGA
+import nsga
+
 def randomize(p):
     for key in p:
         if p[key]['type']=='int':
@@ -14,7 +16,7 @@ def randomize(p):
 def evaluate(ind,setup):
     s = 0.0
     for i in xrange(setup['runs']):
-        s+=SGA.SGA(ind['params'],setup)
+        s+=nsga.nsga(ind['params'],setup)
     ind['fitness'] = s/setup['runs'] 
 
 def uniRecomb(one,two):
@@ -65,12 +67,12 @@ params = {
             'mu':{
                     'value':100,
                     'type':'int',
-                    'range':(1,1000),
+                    'range':(50,100),
                 },
             'childK':{
                     'value':8,
                     'type':'int',
-                    'range':(1,800),
+                    'range':(1,20),
                 },
             'altMutate':{
                     'value':0.002,
@@ -80,7 +82,7 @@ params = {
             'lambda':{
                     'value':40,
                     'type':'int',
-                    'range':(1,1000),
+                    'range':(20,80),
                 },
             'rate':{
                     'value':.001,
@@ -90,7 +92,7 @@ params = {
             'survK':{
                     'value':10,
                     'type':'int',
-                    'range':(1,1000),
+                    'range':(50,100),
                 },
         }
 

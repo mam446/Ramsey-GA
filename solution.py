@@ -1,7 +1,7 @@
 import copy
 import random
 import graph
-
+import math
 global id
 id = 0
 
@@ -16,9 +16,18 @@ class solution:
         self.nFit = 0
         self.altFitness = 0
         self.fitness = 0
+        
+        self.distance = None
 
         for i in xrange(len(self.g.adj)):
             self.g.adj[i] = random.choice([0,1])
+
+
+    def calcDistance(self,other):
+        s = 0
+        for i in xrange(len(self.g.adj)):
+            s+=(self.g.adj[i]-other.g.adj[i])**2
+        return math.sqrt(s)
 
     def duplicate(self):
         s = copy.deepcopy(self)
@@ -103,9 +112,9 @@ class solution:
 
 
     def dominate(self,other):
-        if self.mFit<=other.mFit and self.nFit>other.nFit:
+        if self.mFit<=other.mFit and self.nFit<other.nFit:
             return True
-        if self.mFit<other.mFit and self.nFit>=other.nFit:
+        if self.mFit<other.mFit and self.nFit<=other.nFit:
             return True
         return False
 

@@ -89,7 +89,14 @@ def SGA(params,setup):
 
 
 
+if __name__=="__main__":
+    fp = open(sys.argv[1])
+    fs = open(sys.argv[2])
 
+    p = eval(fp.read())
+    s = eval(fs.read()) 
+    
+    SGA(p,s)
 
 
 
